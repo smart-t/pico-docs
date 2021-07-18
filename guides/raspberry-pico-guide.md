@@ -80,3 +80,28 @@ For this it helps to have screen installed. Then find the serial device of the b
 screen /dev/tty.usbmodem14401 115200
 ```
 **note** for my OSX environment the device appeard on `/dev/tty.usbmodem14401`.
+
+### Example project
+The hello world equivalent of an IoT project is the project that will make a led blink. This is the first project that you could save under `blinktest.c` in a project folder that I suggest you call blinktest.
+```C
+#include <stdio.h>
+#include "pico/stdlib.h"
+
+int main()
+{
+    stdio_init_all();
+    const uint LED_PIN = 25;
+    gpio_init(LED_PIN);
+    gpio_set_dir(LED_PIN, GPIO_OUT);
+    while(true){
+        gpio_put(LED_PIN, 1);
+        printf("ON\n");
+        sleep_ms(1000);
+        gpio_put(LED_PIN, 0);
+        printf("OFF\n");
+        sleep_ms(1000);
+    }
+
+    return 0;
+}
+```
